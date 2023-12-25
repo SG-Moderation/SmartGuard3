@@ -8,6 +8,8 @@ NICKNAME = os.environ['NICKNAME']
 PASSWORD = os.environ['PASSWORD']
 CHANNELS = [os.environ['CHANNEL']]
 
+WEBHOOK = os.environ['WEBHOOK']
+
 
 class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
 
@@ -15,10 +17,9 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
     print(event.arguments)
 
   def on_pubmsg(self, connection, event):
-    print(f"Message: {event.arguments[0]}, From: {event.source.nick}")
-    url = os.environ['WEBHOOK']
+    # print(f"Message: {event.arguments[0]}, From: {event.source.nick}")
     data = {"content": event.arguments[0]}
-    response = requests.post(url, json=data)
+    response = requests.post(WEBHOOK, json=data)
 
 
 bot = IRCBot(
