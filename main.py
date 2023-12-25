@@ -8,6 +8,7 @@ import irc.bot
 
 from smartguard import *
 from blacklist1 import blacklist1
+from blacklist2 import blacklist2
 
 ########################################################################################################################
 
@@ -40,8 +41,11 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
 
     # run the message through the filter
     if automod_check_a1(msg_cont, msg_auth, blacklist1) or automod_check_a2(
-        msg_cont, msg_auth, blacklist1):
-      print(f'Player {msg_auth} said "{msg_cont}"')
+        msg_cont, msg_auth, blacklist1) or automod_check_b1(
+            msg_cont, msg_auth, blacklist2) or automod_check_b2(
+                msg_cont, msg_auth, blacklist2) or automod_check_b3(
+                    msg_cont, msg_auth, blacklist2):
+      # print(f'Player {msg_auth} said "{msg_cont}"')
       data = {"content": f'Player {msg_auth} said "{msg_cont}"'}
       response = requests.post(LOG_WEBHOOK, json=data)
 
