@@ -9,6 +9,7 @@ import irc.bot
 from smartguard import *
 from blacklist1 import blacklist1
 from blacklist2 import blacklist2
+from keep_alive import keep_alive
 
 ########################################################################################################################
 
@@ -59,6 +60,7 @@ bot = IRCBot(
     ident_password=PASSWORD,
     channels=CHANNELS,
 )
+keep_alive()
 bot.start()
 
 ########################################################################################################################
