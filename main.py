@@ -2,6 +2,7 @@
 
 import os
 import requests
+import re
 
 import ib3.auth
 import irc.bot
@@ -15,10 +16,16 @@ from keep_alive import keep_alive
 
 NICKNAME = os.environ['NICKNAME']
 PASSWORD = os.environ['PASSWORD']
-CHANNELS = [os.environ['CHANNEL']]
+CHANNELS = [os.environ['CHANNEL1'], os.environ['CHANNEL2']]
 
 RELAY_WEBHOOK = os.environ['RELAY_WEBHOOK']
 LOG_WEBHOOK = os.environ['LOG_WEBHOOK']
+
+
+def strip_color_codes(message):
+  pattern = re.compile(r"\x03(?:\d{1,2}(?:,\d{1,2})?)?|\x0f", re.UNICODE)
+  return pattern.sub("", message)
+
 
 ########################################################################################################################
 
@@ -30,13 +37,14 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
 
   def on_pubmsg(self, connection, event):
     # print(f"Message: {event.arguments[0]}, From: {event.source.nick}")
+    message_original = strip_color_codes(event.arguments[0])
 
     # relay the chat to #ctf-server
-    data = {"content": event.arguments[0]}
+    data = {"content": message_original}
     response = requests.post(RELAY_WEBHOOK, json=data)
 
     # divide up the message
-    msg_org = event.arguments[0].split(maxsplit=1)
+    msg_org = message_original.split(maxsplit=1)
     msg_auth = msg_org[0]
     msg_cont = msg_org[1]
 
