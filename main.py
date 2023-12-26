@@ -16,7 +16,7 @@ from keep_alive import keep_alive
 
 NICKNAME = os.environ['NICKNAME']
 PASSWORD = os.environ['PASSWORD']
-CHANNELS = [os.environ['CHANNEL1'], os.environ['CHANNEL2']]
+CHANNELS = [os.environ['CHANNEL1']]
 
 RELAY_WEBHOOK = os.environ['RELAY_WEBHOOK']
 LOG_WEBHOOK = os.environ['LOG_WEBHOOK']
@@ -46,7 +46,7 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
     # divide up the message
     msg_org = message_original.split(maxsplit=1)
     msg_auth = msg_org[0]
-    msg_cont = msg_org[1]
+    msg_cont = msg_org[1] if len(msg_org) > 1 else ""
 
     # run the message through the filter
     if automod_check_a1(msg_cont, msg_auth, blacklist1) or automod_check_a2(
