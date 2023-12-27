@@ -122,6 +122,23 @@ files = [
 ]
 
 [[package]]
+name = "asgiref"
+version = "3.7.2"
+description = "ASGI specs, helper code, and adapters"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "asgiref-3.7.2-py3-none-any.whl", hash = "sha256:89b2ef2247e3b562a16eef663bc0e2e703ec6468e2fa8a5cd61cd449786d4f6e"},
+    {file = "asgiref-3.7.2.tar.gz", hash = "sha256:9e0ce3aa93a819ba5b45120216b23878cf6e8525eb3848653452b4192b92afed"},
+]
+
+[package.dependencies]
+typing-extensions = {version = ">=4", markers = "python_version < \"3.11\""}
+
+[package.extras]
+tests = ["mypy (>=0.800)", "pytest", "pytest-asyncio"]
+
+[[package]]
 name = "async-timeout"
 version = "4.0.3"
 description = "Timeout context manager for asyncio programs"
@@ -342,6 +359,40 @@ test = ["coverage[toml]", "pytest", "pytest-asyncio", "pytest-cov", "pytest-mock
 voice = ["PyNaCl (>=1.3.0,<1.6)"]
 
 [[package]]
+name = "django"
+version = "5.0"
+description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
+optional = false
+python-versions = ">=3.10"
+files = [
+    {file = "Django-5.0-py3-none-any.whl", hash = "sha256:3a9fd52b8dbeae335ddf4a9dfa6c6a0853a1122f1fb071a8d5eca979f73a05c8"},
+    {file = "Django-5.0.tar.gz", hash = "sha256:7d29e14dfbc19cb6a95a4bd669edbde11f5d4c6a71fdaa42c2d40b6846e807f7"},
+]
+
+[package.dependencies]
+asgiref = ">=3.7.0"
+sqlparse = ">=0.3.1"
+tzdata = {version = "*", markers = "sys_platform == \"win32\""}
+
+[package.extras]
+argon2 = ["argon2-cffi (>=19.1.0)"]
+bcrypt = ["bcrypt"]
+
+[[package]]
+name = "django-blacklist"
+version = "0.7.0"
+description = "Blacklist users and hosts in Django. Automatically blacklist rate-limited clients."
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-blacklist-0.7.0.tar.gz", hash = "sha256:e62f9e1274abde7c2c3fe22b5cce5e7c17bef436c5c2b74521f763b1dba5ac7a"},
+    {file = "django_blacklist-0.7.0-py3-none-any.whl", hash = "sha256:70cfc2252510d00e776d14b911c01961e4a45e312d4d7c89083a7d34dffe1ef1"},
+]
+
+[package.dependencies]
+Django = "*"
+
+[[package]]
 name = "flask"
 version = "3.0.0"
 description = "A simple framework for building complex web applications."
@@ -450,6 +501,16 @@ files = [
 ]
 
 [[package]]
+name = "future"
+version = "0.18.3"
+description = "Clean single-source support for Python 3 and 2"
+optional = false
+python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
+files = [
+    {file = "future-0.18.3.tar.gz", hash = "sha256:34a17436ed1e96697a86f9de3d15a3b0be01d8bc8de9c1dffd59fb8234ed5307"},
+]
+
+[[package]]
 name = "ib3"
 version = "0.3.0"
 description = "IRC bot framework using mixins to provide common functionality"
@@ -517,6 +578,21 @@ tempora = ">=1.6"
 [package.extras]
 docs = ["furo", "jaraco.packaging (>=9.3)", "jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "sphinx (<7.1)", "sphinx (<7.2.5)", "sphinx (>=3.5)", "sphinx-lint"]
 testing = ["pygments", "pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=2.2)", "pytest-mypy", "pytest-ruff (>=0.2.1)"]
+
+[[package]]
+name = "irc-bot"
+version = "1.0.41"
+description = "A small library to create an IRC bot. Uses asyncore to ensure compatibility with Python 2.7+."
+optional = false
+python-versions = ">=3.6,<4.0"
+files = [
+    {file = "irc_bot-1.0.41-py3-none-any.whl", hash = "sha256:d20becdc8964abff0d314ac457f3ba6eb6426bdd4c713ef00b8bcd2ec9480de8"},
+    {file = "irc_bot-1.0.41.tar.gz", hash = "sha256:c8e366a215b5fa13d80ae736319b468eee636319e1c5f41d56aa4ebbd7dc7220"},
+]
+
+[package.dependencies]
+future = ">=0.18.2,<0.19.0"
+six = ">=1.16.0,<2.0.0"
 
 [[package]]
 name = "itsdangerous"
@@ -984,6 +1060,33 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "six"
+version = "1.16.0"
+description = "Python 2 and 3 compatibility utilities"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+files = [
+    {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
+    {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
+]
+
+[[package]]
+name = "sqlparse"
+version = "0.4.4"
+description = "A non-validating SQL parser."
+optional = false
+python-versions = ">=3.5"
+files = [
+    {file = "sqlparse-0.4.4-py3-none-any.whl", hash = "sha256:5430a4fe2ac7d0f93e66f1efc6e1338a41884b7ddf2a350cedd20ccc4d9d28f3"},
+    {file = "sqlparse-0.4.4.tar.gz", hash = "sha256:d446183e84b8349fa3061f0fe7f06ca94ba65b426946ffebe6e3e8295332420c"},
+]
+
+[package.extras]
+dev = ["build", "flake8"]
+doc = ["sphinx"]
+test = ["pytest", "pytest-cov"]
+
+[[package]]
 name = "tempora"
 version = "5.5.0"
 description = "Objects and routines pertaining to date and time (tempora)"
@@ -1011,6 +1114,17 @@ python-versions = ">=3.8"
 files = [
     {file = "typing_extensions-4.9.0-py3-none-any.whl", hash = "sha256:af72aea155e91adfc61c3ae9e0e342dbc0cba726d6cba4b6c72c1f34e47291cd"},
     {file = "typing_extensions-4.9.0.tar.gz", hash = "sha256:23478f88c37f27d76ac8aee6c905017a143b0b1b886c3c9f66bc2fd94f9f5783"},
+]
+
+[[package]]
+name = "tzdata"
+version = "2023.3"
+description = "Provider of IANA time zone data"
+optional = false
+python-versions = ">=2"
+files = [
+    {file = "tzdata-2023.3-py2.py3-none-any.whl", hash = "sha256:7e65763eef3120314099b6939b5546db7adce1e7d6f2e179e3df563c70511eda"},
+    {file = "tzdata-2023.3.tar.gz", hash = "sha256:11ef1e08e54acb0d4f95bdb1be05da659673de4acbd21bf9c69e94cc5e907a3a"},
 ]
 
 [[package]]
@@ -1152,4 +1266,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10.0,<3.11"
-content-hash = "ce4b109fcd53bc43781ac1f6c0e95763e51c3de932bb13dc397005d796b10eaf"
+content-hash = "6569cb7f4bc836749ee571aa6f9c3a67fcb4b42a622fb9d254388db8235bf827"

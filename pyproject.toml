@@ -11,6 +11,8 @@ irc = "^20.3.1"
 requests = "^2.31.0"
 discord = "^2.3.2"
 flask = "^3.0.0"
+django-blacklist = "^0.7.0"
+irc-bot = "^1.0.41"
 
 [tool.pyright]
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md
