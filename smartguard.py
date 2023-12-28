@@ -3,7 +3,11 @@
 
 # function that removes duplicated characters
 def remove_duplicates(s):
-  return ''.join(dict.fromkeys(s))
+  result = ''
+  for i in range(len(s)):
+    if i == 0 or s[i] != s[i - 1]:
+      result += s[i]
+  return result
 
 
 # function that removes spaces
