@@ -1,6 +1,3 @@
-########################################################################################################################
-
-
 # function that removes duplicated characters
 def remove_duplicates(s):
   result = ''
@@ -32,9 +29,6 @@ def remove_parts(s):
 def replace_parts(s):
   parts_removed = ''.join(c if c.isalpha() or c.isspace() else ' ' for c in s)
   return parts_removed
-
-
-########################################################################################################################
 
 
 class SmartGuard:
@@ -142,6 +136,3 @@ class SmartGuard:
       if word in last_messages_str_b3:
         self.last_messages_b3[name] = []
         return True
-
-
-########################################################################################################################
