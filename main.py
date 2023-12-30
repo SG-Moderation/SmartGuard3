@@ -30,5 +30,5 @@ keep_alive()
 irc_process = multiprocessing.Process(target=start_irc_bot)
 discord_process = multiprocessing.Process(target=start_discord_bot)
 
-irc_process.start()
+# irc_process.start()
 discord_process.start()
