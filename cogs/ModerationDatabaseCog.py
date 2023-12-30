@@ -45,7 +45,5 @@ class ModerationDatabaseCog(commands.Cog):
     await ctx.send(f"Banned: {result}")
 
 
-
-
 async def setup(bot: commands.Bot) -> None:
   await bot.add_cog(ModerationDatabaseCog(bot))
