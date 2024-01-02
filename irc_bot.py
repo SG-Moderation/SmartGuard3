@@ -24,7 +24,7 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
 
   # print out all messages received from IRC
   def on_all_raw_messages(self, connection, event):
-    print(event.arguments)
+    print(event.arguments[0])
 
   # on all messages sent in public channels
   def on_pubmsg(self, connection, event):
