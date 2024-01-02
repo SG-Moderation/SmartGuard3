@@ -1,8 +1,9 @@
 import sqlite3
+import os
 
 
 def check_player_exists(player, cur):
-  print(f"[LOGS] Checking if player {player} exists,")
+  print(f"[LOGS] Checking if player {player} exists.")
   cur.execute("SELECT 1 FROM logs WHERE player = ?", (player, ))
   result = cur.fetchone()
   if result is None:
@@ -30,8 +31,16 @@ def create_database():
       tempbans INTEGER NOT NULL,
       perma_banned INTEGER
     )""")
-    print("[LOGS] Database created if it does not exist.")
+    msg = "Database created if it does not exist."
+    print(f"[LOGS] {msg}")
+    return msg
 
+
+def delete_database():
+  print("[LOGS] Command !delete has been run.")
+  os.system("rm -rf ~/SmartGuard3/mod_db.sqlite")
+  print("[LOGS] Deleted the database file.")
+  return "Deleted the database file."
 
 def retrieve(player):
   with sqlite3.connect("mod_db.sqlite") as conn:
@@ -39,7 +48,10 @@ def retrieve(player):
     cur.execute("SELECT * FROM logs WHERE player = ?", (player, ))
     data = cur.fetchone()
     print(f"[LOGS] Retrieved logs for player {player}.")
-    return data
+    if data is None:
+      return f"No logs found for player `{player}`"
+    else:
+      return f"`{data[1]}`: {data[2]} warning(s), {data[3]} tempban(s), and {is_banned(player)}."
 
 
 def warn(player, increment):
@@ -52,12 +64,14 @@ def warn(player, increment):
         """
         UPDATE logs SET action_taken = action_taken + ? WHERE player = ?
         """, (
-            increment,
+            int(increment),
             player,
         ))
-    print(f"[LOGS] Warnings value updated by {increment} for {player}.")
-    cur.execute("SELECT * FROM logs WHERE player = ?", (player, ))
-    return cur.fetchone()
+    conn.commit()
+    msg1 = f"Warnings value updated by {increment} for player `{player}`."
+    print(f"[LOGS] {msg1}")
+
+    return f"{msg1}\n{retrieve(player)}"
 
 
 def tempban(player):
@@ -68,30 +82,42 @@ def tempban(player):
 
     cur.execute("UPDATE logs SET tempbans = tempbans + 1 WHERE player = ?",
                 (player, ))
-    print(f"[LOGS] Tempbanned {player}.")
+    msg = f"Tempbanned `{player}`."
+    print(f"[LOGS] {msg}")
+    return msg
 
 
 def ban(player):
-  with sqlite3.connect("mod_db.sqlite") as conn:
-    cur = conn.cursor()
+  if is_banned(player) == "is banned":
+    return f"Player `{player}` is already banned."
+  else:
+    with sqlite3.connect("mod_db.sqlite") as conn:
+      cur = conn.cursor()
 
-    check_player_exists(player, cur)
+      check_player_exists(player, cur)
 
-    cur.execute(
-        f"UPDATE logs SET perma_banned = perma_banned + 1 WHERE player = '{player}'"
-    )
-    print(f"[LOGS] Banned {player}.")
+      cur.execute(
+          f"UPDATE logs SET perma_banned = perma_banned + 1 WHERE player = '{player}'"
+      )
+      msg = f"Banned `{player}`."
+      print(f"[LOGS] {msg}")
+      return msg
 
 
 def unban(player):
-  with sqlite3.connect("mod_db.sqlite") as conn:
-    cur = conn.cursor()
+  if is_banned(player) == "is not banned":
+    return f"Player `{player}` is not banned."
+  else:
+    with sqlite3.connect("mod_db.sqlite") as conn:
+      cur = conn.cursor()
 
-    check_player_exists(player, cur)
+      check_player_exists(player, cur)
 
-    cur.execute("UPDATE logs SET perma_banned = 0 WHERE player = ?",
-                (player, ))
-    print(f"[LOGS] Unbanned {player}.")
+      cur.execute("UPDATE logs SET perma_banned = 0 WHERE player = ?",
+                  (player, ))
+      msg = f"Unbanned `{player}`."
+      print(f"[LOGS] {msg}")
+    return msg
 
 
 def is_banned(player):
