@@ -42,6 +42,7 @@ def delete_database():
   print("[LOGS] Deleted the database file.")
   return "Deleted the database file."
 
+
 def retrieve(player):
   with sqlite3.connect("mod_db.sqlite") as conn:
     cur = conn.cursor()
@@ -71,7 +72,7 @@ def warn(player, increment):
     msg1 = f"Warnings value updated by {increment} for player `{player}`."
     print(f"[LOGS] {msg1}")
 
-    return f"{msg1}\n{retrieve(player)}"
+    return f"{msg1}  {retrieve(player)}"
 
 
 def tempban(player):

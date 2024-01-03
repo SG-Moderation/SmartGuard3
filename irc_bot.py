@@ -7,6 +7,7 @@ import irc.bot
 
 from smartguard import SmartGuard
 from blacklist import blacklist1, blacklist2
+from cogs import db
 
 
 # removes color codings from the message
@@ -31,6 +32,62 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
     # use event.arguments[0] for message content
     # use  event.source.nick for message author
 
+    # listen to commands on specific channels
+    if event.target == os.environ['CHANNEL3']:
+
+      if event.arguments[0].startswith("!create"):
+        print("[LOGS] Command !create has been run.")
+        connection.privmsg(os.environ['CHANNEL3'], db.create_database())
+
+      if event.arguments[0].startswith("!retrieve"):
+        print("[LOGS] Command !retrieve has been run.")
+        command_table = event.arguments[0].split()
+        if len(command_table) > 1:
+          connection.privmsg(os.environ['CHANNEL3'],
+                             db.retrieve(command_table[1]))
+        else:
+          connection.privmsg(os.environ['CHANNEL3'], "Invalid command usage")
+
+      if event.arguments[0].startswith("!delete"):
+        print("[LOGS] Command !delete has been run.")
+        connection.privmsg(os.environ['CHANNEL3'], db.delete_database())
+
+      if event.arguments[0].startswith("!warn"):
+        print("[LOGS] Command !warn has been run.")
+        command_table = event.arguments[0].split()
+        if len(command_table) > 2:
+          connection.privmsg(os.environ['CHANNEL3'],
+                             db.warn(command_table[1], command_table[2]))
+        else:
+          connection.privmsg(os.environ['CHANNEL3'], "Invalid command usage")
+
+      if event.arguments[0].startswith("!tempban"):
+        print("[LOGS] Command !tempban has been run.")
+        command_table = event.arguments[0].split()
+        if len(command_table) > 1:
+          connection.privmsg(os.environ['CHANNEL3'],
+                             db.tempban(command_table[1]))
+        else:
+          connection.privmsg(os.environ['CHANNEL3'], "Invalid command usage")
+
+      if event.arguments[0].startswith("!ban"):
+        print("[LOGS] Command !ban has been run.")
+        command_table = event.arguments[0].split()
+        if len(command_table) > 1:
+          connection.privmsg(os.environ['CHANNEL3'], db.ban(command_table[1]))
+        else:
+          connection.privmsg(os.environ['CHANNEL3'], "Invalid command usage")
+
+      if event.arguments[0].startswith("!unban"):
+        print("[LOGS] Command !unban has been run.")
+        command_table = event.arguments[0].split()
+        if len(command_table) > 1:
+          connection.privmsg(os.environ['CHANNEL3'],
+                             db.unban(command_table[1]))
+        else:
+          connection.privmsg(os.environ['CHANNEL3'], "Invalid command usage")
+
+    # run the filter on specific channels
     # remove the CHANNEL_2 from the if statement unless for testing
     if event.target == os.environ['CHANNEL1'] or event.target == os.environ[
         'CHANNEL2']:

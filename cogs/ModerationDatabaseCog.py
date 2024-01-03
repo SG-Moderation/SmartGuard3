@@ -22,6 +22,7 @@ class ModerationDatabaseCog(commands.Cog):
   @commands.hybrid_command(name="delete",
                            description="Delete the database file.")
   async def delete(self, ctx: commands.Context):
+    print("[LOGS] Command !delete has been run.")
     await ctx.send(db.delete_database())
 
 
@@ -29,6 +30,7 @@ class ModerationDatabaseCog(commands.Cog):
       name="warn",
       description="Update the warnings log for a player with an increment.")
   async def warn(self, ctx: commands.Context, player, increment: int):
+    print("[LOGS] Command !warn has been run.")
     await ctx.send(db.warn(player, increment))
 
   @warn.error
