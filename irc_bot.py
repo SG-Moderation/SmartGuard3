@@ -90,7 +90,7 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
     # run the filter on specific channels
     # remove the CHANNEL_2 from the if statement unless for testing
     if event.target == os.environ[
-        'CHANNEL1']:  #or event.target == os.environ['CHANNEL2']:
+        'CHANNEL1']:
       message_original = strip_color_codes(event.arguments[0])
 
       # relay the chat to the relay discord channel
