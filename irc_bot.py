@@ -5,8 +5,8 @@ import requests
 import ib3.auth
 import irc.bot
 
-from smartguard import SmartGuard
-from blacklist import blacklist1, blacklist2
+from smartguard.smartguard import SmartGuard
+from smartguard.blacklist import blacklist1, blacklist2
 from cogs import db
 
 
