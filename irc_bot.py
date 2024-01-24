@@ -7,8 +7,7 @@ import irc.bot
 
 from smartguard.smartguard import SmartGuard
 from smartguard.blacklist import blacklist1, blacklist2
-from cogs import db
-
+from cogs.ModerationDatabaseIRC import ModerationDatabaseIRC
 
 # removes color codings from the message
 def strip_color_codes(message):
@@ -22,6 +21,7 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
     # inherit all properties and methods from its superclass
     super().__init__(*args, **kwargs)
     self.filter = SmartGuard()
+    self.moderation_db = ModerationDatabaseIRC(os.environ['CHANNEL3'])
 
   # print out all messages received from IRC
   def on_all_raw_messages(self, connection, event):
@@ -34,63 +34,11 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
 
     # listen to commands on specific channels
     if event.target == os.environ['CHANNEL3']:
-
-      if event.arguments[0].startswith("!create"):
-        print("[LOGS] Command !create has been run.")
-        connection.privmsg(os.environ['CHANNEL3'], db.create_database())
-
-      if event.arguments[0].startswith("!retrieve"):
-        print("[LOGS] Command !retrieve has been run.")
-        command_table = event.arguments[0].split()
-        if len(command_table) > 1:
-          connection.privmsg(os.environ['CHANNEL3'],
-                             db.retrieve(command_table[1]))
-        else:
-          connection.privmsg(os.environ['CHANNEL3'], "Invalid command usage")
-
-      if event.arguments[0].startswith("!delete"):
-        print("[LOGS] Command !delete has been run.")
-        connection.privmsg(os.environ['CHANNEL3'], db.delete_database())
-
-      if event.arguments[0].startswith("!warn"):
-        print("[LOGS] Command !warn has been run.")
-        command_table = event.arguments[0].split()
-        if len(command_table) > 2:
-          connection.privmsg(os.environ['CHANNEL3'],
-                             db.warn(command_table[1], command_table[2]))
-        else:
-          connection.privmsg(os.environ['CHANNEL3'], "Invalid command usage")
-
-      if event.arguments[0].startswith("!tempban"):
-        print("[LOGS] Command !tempban has been run.")
-        command_table = event.arguments[0].split()
-        if len(command_table) > 1:
-          connection.privmsg(os.environ['CHANNEL3'],
-                             db.tempban(command_table[1]))
-        else:
-          connection.privmsg(os.environ['CHANNEL3'], "Invalid command usage")
-
-      if event.arguments[0].startswith("!ban"):
-        print("[LOGS] Command !ban has been run.")
-        command_table = event.arguments[0].split()
-        if len(command_table) > 1:
-          connection.privmsg(os.environ['CHANNEL3'], db.ban(command_table[1]))
-        else:
-          connection.privmsg(os.environ['CHANNEL3'], "Invalid command usage")
-
-      if event.arguments[0].startswith("!unban"):
-        print("[LOGS] Command !unban has been run.")
-        command_table = event.arguments[0].split()
-        if len(command_table) > 1:
-          connection.privmsg(os.environ['CHANNEL3'],
-                             db.unban(command_table[1]))
-        else:
-          connection.privmsg(os.environ['CHANNEL3'], "Invalid command usage")
+      self.moderation_db.mdbirc_commands(connection, event.arguments[0])
 
     # run the filter on specific channels
     # remove the CHANNEL_2 from the if statement unless for testing
-    if event.target == os.environ[
-        'CHANNEL1']:
+    if event.target == os.environ['CHANNEL1']:
       message_original = strip_color_codes(event.arguments[0])
 
       # relay the chat to the relay discord channel
