@@ -9,6 +9,7 @@ from smartguard.smartguard import SmartGuard
 from smartguard.blacklist import blacklist1, blacklist2
 from cogs.ModerationDatabaseIRC import ModerationDatabaseIRC
 
+
 # removes color codings from the message
 def strip_color_codes(message):
   pattern = re.compile(r"\x03(?:\d{1,2}(?:,\d{1,2})?)?|\x0f", re.UNICODE)
@@ -52,14 +53,7 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
       msg_cont = msg_org[1] if len(msg_org) > 1 else ""
 
       # run the message through the SmartGuard filters
-      if self.filter.automod_check_a1(
-          msg_cont, msg_auth, blacklist1) or self.filter.automod_check_a2(
-              msg_cont, msg_auth, blacklist1) or self.filter.automod_check_b1(
-                  msg_cont, msg_auth,
-                  blacklist2) or self.filter.automod_check_b2(
-                      msg_cont, msg_auth,
-                      blacklist2) or self.filter.automod_check_b3(
-                          msg_cont, msg_auth, blacklist2):
+      if self.filter.is_sus(msg_cont, msg_auth, blacklist1, blacklist2):
         # if the message contains swear, create a log
         log_message = f'Player {msg_auth} said "{msg_cont}"'
 

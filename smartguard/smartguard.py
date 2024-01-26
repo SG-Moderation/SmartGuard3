@@ -136,3 +136,15 @@ class SmartGuard:
       if word in last_messages_str_b3:
         self.last_messages_b3[name] = []
         return True
+
+  # a master function to run all the checks
+  def is_sus(self, content, author, blacklist_a, blacklist_b):
+    if self.automod_check_a1(
+        content, author, blacklist_a) or self.automod_check_a2(
+            content, author, blacklist_a) or self.automod_check_b1(
+                content, author, blacklist_b) or self.automod_check_b2(
+                    content, author, blacklist_b) or self.automod_check_b3(
+                        content, author, blacklist_b):
+      return True
+    else:
+      return False
