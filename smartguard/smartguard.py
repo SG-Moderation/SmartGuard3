@@ -1,3 +1,6 @@
+import unicodedata
+
+
 # function that removes duplicated characters
 def remove_duplicates(s):
   result = ''
@@ -29,6 +32,14 @@ def remove_parts(s):
 def replace_parts(s):
   parts_removed = ''.join(c if c.isalpha() or c.isspace() else ' ' for c in s)
   return parts_removed
+
+
+# function that removes all non-latin characters
+def remove_non_latin(s):
+  return ''.join(c for c in s
+                 if unicodedata.category(c) in ('Lu', 'Ll', 'Zs', 'Pc', 'Pd',
+                                                'Ps', 'Pe', 'Pi', 'Pf', 'Po',
+                                                'Nd', 'Sc'))
 
 
 class SmartGuard:
@@ -151,6 +162,14 @@ class SmartGuard:
       if alpha > 8 and result > 0.8:
         return True
 
+  # if a message has words longer than 20 char, return true
+  def contains_spam(self, s):
+    s = remove_non_latin(s)
+    words = s.split()
+    for word in words:
+      if len(word) > 20:
+        return True
+
   # a master function to run all the checks
   def is_sus(self, content, author, blacklist_a, blacklist_b):
     if self.automod_check_a1(
@@ -158,8 +177,8 @@ class SmartGuard:
             content, author, blacklist_a) or self.automod_check_b1(
                 content, author, blacklist_b) or self.automod_check_b2(
                     content, author, blacklist_b) or self.automod_check_b3(
-                        content, author,
-                        blacklist_b) or self.contains_caps(content):
+                        content, author, blacklist_b) or self.contains_caps(
+                            content) or self.contains_spam(content):
       return True
     else:
       return False
