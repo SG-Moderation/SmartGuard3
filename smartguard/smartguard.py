@@ -137,6 +137,20 @@ class SmartGuard:
         self.last_messages_b3[name] = []
         return True
 
+  # if a message has over 70% of capitalized letters, return true
+  def contains_caps(self, message):
+    alpha = 0
+    caps = 0
+    for char in message:
+      if char.isalpha():
+        alpha += 1
+      if char.isupper():
+        caps += 1
+    if caps > 0:
+      result = caps / alpha
+      if alpha > 7 and result > 0.7:
+        return True
+
   # a master function to run all the checks
   def is_sus(self, content, author, blacklist_a, blacklist_b):
     if self.automod_check_a1(
@@ -144,7 +158,8 @@ class SmartGuard:
             content, author, blacklist_a) or self.automod_check_b1(
                 content, author, blacklist_b) or self.automod_check_b2(
                     content, author, blacklist_b) or self.automod_check_b3(
-                        content, author, blacklist_b):
+                        content, author,
+                        blacklist_b) or self.contains_caps(content):
       return True
     else:
       return False
