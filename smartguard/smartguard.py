@@ -148,7 +148,7 @@ class SmartGuard:
         caps += 1
     if caps > 0:
       result = caps / alpha
-      if alpha > 7 and result > 0.7:
+      if alpha > 8 and result > 0.8:
         return True
 
   # a master function to run all the checks
