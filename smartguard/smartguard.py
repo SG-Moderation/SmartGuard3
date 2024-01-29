@@ -137,7 +137,7 @@ class SmartGuard:
         self.last_messages_b3[name] = []
         return True
 
-  # if a message has over 70% of capitalized letters, return true
+  # if a message has over 80% of capitalized letters, return true
   def contains_caps(self, message):
     alpha = 0
     caps = 0
