@@ -6,6 +6,7 @@ import ib3.auth
 import irc.bot
 
 from smartguard.smartguard import SmartGuard
+from smartguard.spamguard import SpamGuard
 from smartguard.blacklist import blacklist1, blacklist2
 from cogs.ModerationDatabaseIRC import ModerationDatabaseIRC
 
@@ -22,6 +23,7 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
     # inherit all properties and methods from its superclass
     super().__init__(*args, **kwargs)
     self.filter = SmartGuard()
+    self.spam_check = SpamGuard()
     self.moderation_db = ModerationDatabaseIRC(os.environ['CHANNEL3'])
 
   # print out all messages received from IRC
@@ -63,3 +65,13 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
 
         # send the log to the logs IRC channel
         connection.privmsg(os.environ['CHANNEL2'], log_message)
+      
+      if self.spam_check.is_spam(msg_cont, msg_auth):
+        spam_warning = f'Player {msg_auth} is spamming'
+
+        # send the warning to the logs Discord channel
+        data = {"content": spam_warning}
+        response = requests.post(os.environ['LOG_WEBHOOK'], json=data)
+        
+        # send the warning to the logs IRC channel
+        connection.privmsg(os.environ['CHANNEL2'], spam_warning)
