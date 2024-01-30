@@ -22,9 +22,9 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
   def __init__(self, *args, **kwargs):
     # inherit all properties and methods from its superclass
     super().__init__(*args, **kwargs)
-    self.filter = SmartGuard()
+    self.sus_check = SmartGuard()
     self.spam_check = SpamGuard()
-    self.moderation_db = ModerationDatabaseIRC(os.environ['CHANNEL3'])
+    self.mdb_commands = ModerationDatabaseIRC(os.environ['CHANNEL3'])
 
   # print out all messages received from IRC
   def on_all_raw_messages(self, connection, event):
@@ -37,7 +37,7 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
 
     # listen to commands on specific channels
     if event.target == os.environ['CHANNEL3']:
-      self.moderation_db.mdbirc_commands(connection, event.arguments[0])
+      self.mdb_commands.listen(connection, event.arguments[0])
 
     # run the filter on specific channels
     # remove the CHANNEL_2 from the if statement unless for testing
@@ -54,8 +54,8 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
       msg_auth = msg_org[0]
       msg_cont = msg_org[1] if len(msg_org) > 1 else ""
 
-      # run the message through the SmartGuard filters
-      if self.filter.is_sus(msg_cont, msg_auth, blacklist1, blacklist2):
+      # run the message through SmartGuard's checks
+      if self.sus_check.is_sus(msg_cont, msg_auth, blacklist1, blacklist2):
         # if the message contains swear, create a log
         log_message = f'Player {msg_auth} said "{msg_cont}"'
 
@@ -65,8 +65,10 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
 
         # send the log to the logs IRC channel
         connection.privmsg(os.environ['CHANNEL2'], log_message)
-      
+
+      # run the message through SpamGuard's check
       if self.spam_check.is_spam(msg_cont, msg_auth):
+        # if the message is spam, create a log
         spam_warning = f'Player {msg_auth} is spamming'
 
         # send the warning to the logs Discord channel

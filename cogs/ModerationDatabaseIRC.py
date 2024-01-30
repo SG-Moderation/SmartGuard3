@@ -6,7 +6,7 @@ class ModerationDatabaseIRC:
   def __init__(self, irc_channel):
     self.channel = irc_channel
 
-  def mdbirc_commands(self, irc_connection, message):
+  def listen(self, irc_connection, message):
     if message.startswith("!create"):
       print("[LOGS] Command !create has been run.")
       irc_connection.privmsg(self.channel, db.create_database())
