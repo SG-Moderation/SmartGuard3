@@ -50,11 +50,10 @@ class SmartGuard:
     self.last_messages_b1 = {}
     self.last_messages_b2 = {}
     self.last_messages_b3 = {}
-    self.last_messages_wl = {}
 
   # removes all special characters, spaces so it is just pure plain text
   # first if tests with duplicates, second if without
-  def automod_check_a1(self, message, name, blacklist):
+  def check_a1(self, message, name, blacklist):
     if name not in self.last_messages_a1:
       self.last_messages_a1[name] = []
 
@@ -73,7 +72,7 @@ class SmartGuard:
 
   # removes all spaces but keep special characters
   # first if tests with duplicates, second if without
-  def automod_check_a2(self, message, name, blacklist):
+  def check_a2(self, message, name, blacklist):
     if name not in self.last_messages_a2:
       self.last_messages_a2[name] = []
 
@@ -93,7 +92,7 @@ class SmartGuard:
   # removes all special characters but keep spaces
   # a space is added at the end of each message in the table
   # first if tests with duplicates, second if without
-  def automod_check_b1(self, message, name, blacklist):
+  def check_b1(self, message, name, blacklist):
     if name not in self.last_messages_b1:
       self.last_messages_b1[name] = []
 
@@ -113,7 +112,7 @@ class SmartGuard:
   # replace all special characters with spaces
   # a space is added at the end of each message in the table
   # first if tests with duplicates, second if without
-  def automod_check_b2(self, message, name, blacklist):
+  def check_b2(self, message, name, blacklist):
     if name not in self.last_messages_b2:
       self.last_messages_b2[name] = []
 
@@ -132,7 +131,7 @@ class SmartGuard:
 
   # keep special characters and spaces but remove duplicates
   # a space is added at the end of each message in the table
-  def automod_check_b3(self, message, name, blacklist):
+  def check_b3(self, message, name, blacklist):
     if name not in self.last_messages_b3:
       self.last_messages_b3[name] = []
 
@@ -149,7 +148,7 @@ class SmartGuard:
         return True
 
   # if a message has over 80% of capitalized letters, return true
-  def contains_caps(self, message):
+  def check_caps(self, message):
     alpha = 0
     caps = 0
     for char in message:
@@ -163,7 +162,7 @@ class SmartGuard:
         return True
 
   # if a message has words longer than 20 char, return true
-  def contains_spam(self, s):
+  def check_spam(self, s):
     s = remove_non_latin(s)
     words = s.split()
     for word in words:
@@ -172,13 +171,13 @@ class SmartGuard:
 
   # a master function to run all the checks
   def is_sus(self, content, author, blacklist_a, blacklist_b):
-    if self.automod_check_a1(
-        content, author, blacklist_a) or self.automod_check_a2(
-            content, author, blacklist_a) or self.automod_check_b1(
-                content, author, blacklist_b) or self.automod_check_b2(
-                    content, author, blacklist_b) or self.automod_check_b3(
-                        content, author, blacklist_b) or self.contains_caps(
-                            content) or self.contains_spam(content):
+    if self.check_a1(
+        content, author, blacklist_a) or self.check_a2(
+            content, author, blacklist_a) or self.check_b1(
+                content, author, blacklist_b) or self.check_b2(
+                    content, author, blacklist_b) or self.check_b3(
+                        content, author, blacklist_b) or self.check_caps(
+                            content) or self.check_spam(content):
       return True
     else:
       return False
