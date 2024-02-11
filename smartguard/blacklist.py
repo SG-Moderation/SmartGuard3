@@ -1,7 +1,17 @@
 # do not press Ctrl+S whilst editing on Replit to prevent autoformatting.
 
 # this blacklist focuses on words that are space sensitive
+'''
+Please add spaces after each word to make sure the words 
+are recognised as individual words.
+
+Also, you can add another version of the word with spaces
+after each letter (e.g. 'ass ' and 'a s s ') so that
+SmartGuard can detect it if it is typed in separate lines.
+'''
 blacklist2 = {
+    "fk ",
+    "f k ",
     "fu ",
     "f u ",
     "shi ",
