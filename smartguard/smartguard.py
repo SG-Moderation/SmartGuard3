@@ -96,7 +96,7 @@ class SmartGuard:
     if name not in self.last_messages_b1:
       self.last_messages_b1[name] = []
 
-    message = (remove_parts(message.lower()) + " ")
+    message = (" " + remove_parts(message.lower()) + " ")
     self.last_messages_b1[name].append(message)
 
     if len(self.last_messages_b1[name]) > 20:
@@ -116,7 +116,7 @@ class SmartGuard:
     if name not in self.last_messages_b2:
       self.last_messages_b2[name] = []
 
-    message = (replace_parts(message.lower()) + " ")
+    message = (" " + replace_parts(message.lower()) + " ")
     self.last_messages_b2[name].append(message)
 
     if len(self.last_messages_b2[name]) > 20:
@@ -135,7 +135,7 @@ class SmartGuard:
     if name not in self.last_messages_b3:
       self.last_messages_b3[name] = []
 
-    message = (remove_duplicates(message.lower()) + " ")
+    message = (" " + remove_duplicates(message.lower()) + " ")
     self.last_messages_b3[name].append(message)
 
     if len(self.last_messages_b3[name]) > 20:

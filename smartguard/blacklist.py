@@ -1,34 +1,41 @@
-# do not press Ctrl+S whilst editing on Replit to prevent autoformatting.
+# do not press Ctrl+S whilst editing on Replit to prevent autoformatting
 
-# this blacklist focuses on words that are space sensitive
 '''
-Please add spaces after each word to make sure the words 
-are recognised as individual words.
+This blacklist focuses on words that are space sensitive.
+
+To make sure a word only gets detected if it stands as
+an individual word and not part of another word, add
+spaces on either side (e.g. ' word ').
 
 Also, you can add another version of the word with spaces
-after each letter (e.g. 'ass ' and 'a s s ') so that
+after each letter (e.g. ' ass ' and ' a s s ') so that
 SmartGuard can detect it if it is typed in separate lines.
 '''
 blacklist2 = {
-    "fk ",
-    "f k ",
-    "fu ",
-    "f u ",
-    "shi ",
-    "s h i ",
-    "dic ",
-    "d i c ",
-    "ass ",
-    "a s s",
-    "nig ",
-    "n i g ",
-    "nigs ",
-    "n i g s ",
-    "sx ",
-    "s x ",
+    " fk ",
+    " f k ",
+    " fu ",
+    " f u ",
+    " shi ",
+    " s h i ",
+    " dic ",
+    " d i c ",
+    " ass ",
+    " a s s",
+    " nig ",
+    " n i g ",
+    " nigs ",
+    " n i g s ",
+    " sx ",
+    " s x ",
 }
 
-# this blacklist focuses on words that are not space sensitive
+'''
+This blacklist focuses on words that are not space sensitive.
+
+All spaces will be ignored when checking, so any word that
+has a space will be useless.
+'''
 blacklist1 = {
     # Hindi swears
     'chutiya',
@@ -41,7 +48,7 @@ blacklist1 = {
     'harami',
     'bakchod',
     'saale',
-    'sale',  # Will trigger the English "sale" as well.
+    'sale',  # will trigger the English "sale" as well
     'saala',
     'sala',
     'behanchod',
