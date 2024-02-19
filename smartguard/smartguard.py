@@ -156,7 +156,7 @@ class SmartGuard:
         alpha += 1
       if char.isupper():
         caps += 1
-    if caps > 0:
+    if caps > 0 and alpha > 0:
       result = caps / alpha
       if alpha > 8 and result > 0.8:
         return True
