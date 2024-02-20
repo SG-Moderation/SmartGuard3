@@ -22,7 +22,10 @@ def start_irc_bot():
 
 def start_discord_bot():
   discord_bot = DiscordBot()
-  discord_bot.run(os.environ['DISCORD_BOT_SECRET'])
+  try:
+    discord_bot.run(os.environ['DISCORD_BOT_SECRET'])
+  except Exception as e:
+    print(f"DISCORD BOT ERROR: {e}")
 
 
 # use multiprocessing to run both scripts concurrently
