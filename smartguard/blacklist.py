@@ -165,6 +165,7 @@ blacklist1 = {
     'fook',
     'fkin',
     'fckin',
+    'fug', # experimental
     'shit',
     'shi+',
     '$hit',
