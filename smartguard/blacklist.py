@@ -236,6 +236,7 @@ blacklist1 = {
     'kunt',
     'arse',
     'ar5e',
+    'ass', #experimental
     'a*s',
     'anus',
     'a$$',
