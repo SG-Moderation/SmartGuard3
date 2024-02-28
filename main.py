@@ -32,5 +32,6 @@ def start_discord_bot():
 irc_process = multiprocessing.Process(target=start_irc_bot)
 discord_process = multiprocessing.Process(target=start_discord_bot)
 
-irc_process.start()
-discord_process.start()
+if __name__ == '__main__':
+  irc_process.start()
+  discord_process.start()
