@@ -188,6 +188,7 @@ blacklist1 = {
     '5hit',
     'turd',
     'bitch',
+    'bit¢h',
     'l3i+ch',
     'l3itch',
     'l3tch',
