@@ -286,6 +286,8 @@ blacklist1 = {
     'dong',
     'd0ng',
     'dick',
+    'd|ck',
+    'd¡ck',
     'dlck',
     'dix',
     'd*ck',
