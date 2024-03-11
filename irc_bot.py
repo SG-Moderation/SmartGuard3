@@ -69,7 +69,7 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
       # run the message through SpamGuard's check
       if self.spam_check.is_spam(msg_cont, msg_auth):
         # if the message is spam, create a log
-        spam_warning = f'Player {msg_auth} is spamming'
+        spam_warning = f'Player {msg_auth} is sending messages too fast'
 
         # send the warning to the logs Discord channel
         data = {"content": spam_warning}
