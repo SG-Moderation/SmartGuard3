@@ -1,6 +1,6 @@
 # SmartGuard 3
 This is an IRC moderation bot made for in-game chat relays to IRC. It aids moderation by reading messages received real-time in channels and narrowing them down into suspicious messages that may contain potential swears or chat abuse. With this tool, you don't have to read every single message in the chat you're moderating; this bot narrows everything down to a _way_ smaller collection.
-> Note: Since this bot is made for in-game chat relays, it treats the first character of any message as the sender.
+> Note: Since this bot is made for in-game chat relays, it treats the first word of any message as the sender.
 
 ## Ability
 Most cases of swearing, swear filter bypass, and other forms of chat abuse are caught:
