@@ -24,7 +24,7 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
     super().__init__(*args, **kwargs)
     self.sus_check = SmartGuard()
     self.spam_check = SpamGuard()
-    self.mdb_commands = ModerationDatabaseIRC(os.environ['CHANNEL3'])
+    self.mdb_commands = ModerationDatabaseIRC(os.environ['CHANNEL2'])
 
   # print out all messages received from IRC
   def on_all_raw_messages(self, connection, event):
@@ -36,7 +36,7 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
     # use  event.source.nick for message author
 
     # listen to commands on specific channels
-    if event.target == os.environ['CHANNEL3']:
+    if event.target == os.environ['CHANNEL2']:
       self.mdb_commands.listen(connection, event.arguments[0])
 
     # run the filter on specific channels

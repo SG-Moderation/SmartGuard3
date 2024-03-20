@@ -12,10 +12,7 @@ def start_irc_bot():
       nickname=os.environ['NICKNAME'],
       realname=os.environ['NICKNAME'],
       ident_password=os.environ['PASSWORD'],
-      channels=[
-          os.environ['CHANNEL1'], os.environ['CHANNEL2'],
-          os.environ['CHANNEL3']
-      ],
+      channels=[os.environ['CHANNEL1'], os.environ['CHANNEL2']],
   )
   irc_bot.start()
 
