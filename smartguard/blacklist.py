@@ -28,6 +28,8 @@ blacklist2 = {
     " n i g s ",
     " sx ",
     " s x ",
+    " gf ",
+    " bg ",
 }
 
 '''
@@ -413,8 +415,6 @@ blacklist1 = {
     'jakof',
     'naked',
     'girlfriend',
-    'gf',
-    'bf',
     'boyfriend',
     'girlontop',
     'goonadate',
