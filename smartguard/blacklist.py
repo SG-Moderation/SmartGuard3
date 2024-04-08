@@ -29,7 +29,7 @@ blacklist2 = {
     " sx ",
     " s x ",
     " gf ",
-    " bg ",
+    " bf ",
 }
 
 '''
