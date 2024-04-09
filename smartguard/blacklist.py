@@ -30,6 +30,7 @@ blacklist2 = {
     " s x ",
     " gf ",
     " bf ",
+    " kkk ",
 }
 
 '''
@@ -590,7 +591,6 @@ blacklist1 = {
     'lgbtq',
     'lgbt',
     'putin',
-    'kkk',
     '69',
     'swastika',
     'swatika',
