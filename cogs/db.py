@@ -38,7 +38,8 @@ def create_database():
 
 def delete_database():
   print("[LOGS] Command !delete has been run.")
-  os.system("rm -rf ~/SmartGuard3/mod_db.sqlite")
+  if os.path.isfile("mod_db.sqlite"):
+    os.remove("mod_db.sqlite")
   print("[LOGS] Deleted the database file.")
   return "Deleted the database file."
 
