@@ -1,4 +1,4 @@
-# SmartGuard 3
+# SmartGuard3
 
 <img src="./assets/SmartGuard_TransparentBG.png" align="right"
  alt="SmartGuard logo by s20 and GreenBlob" width="192" height="192">
