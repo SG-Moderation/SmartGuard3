@@ -47,7 +47,7 @@ You can run this bot by forking it and running it [on Replit](replit.com/@a-blob
 
 To run the bot locally, you can clone this repository to your computer, customise the environment variables defined in the `start.bat` or `start.sh` file according to the description of each variable/key provided above, and run the `start.bat` or `start.sh` file to start the bot.
 
-## Using the SmartGuard 3 Action Logging Features
+## Using the SmartGuard3 Action Logging Features
 
 SmartGuard3 comes along with several logging commands to keep track of warnings, temp-bans, and perma-bans issued to a player. It stores this information in an SQLite database. These commands work both from `IRC_WARNINGS_CHANNEL` as well as the Discord channels that the SmartGuard Discord bot has access to. The bot command prefix is `!`. In Discord, you can also run these as [slash commands](https://support.discord.com/hc/en-us/articles/1500000368501-Slash-Commands-FAQ).
 
