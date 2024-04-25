@@ -47,5 +47,25 @@ You can run this bot by forking it and running it [on Replit](replit.com/@a-blob
 
 To run the bot locally, you can clone this repository to your computer, customise the environment variables defined in the `start.bat` or `start.sh` file according to the description of each variable/key provided above, and run the `start.bat` or `start.sh` file to start the bot.
 
-## Using the SmartGuard Action Logging Features
-WIP
+## Using the SmartGuard 3 Action Logging Features
+
+SmartGuard 3 comes along with several logging commands to keep track of warnings, temp-bans, and perma-bans issued to a player. It stores this information in an SQLite database. These commands work both from the IRC channel as well as the Discord channels that SmartGuard has access to. The bot command prefix is `!`. In Discord, you can also run these as [slash commands](https://support.discord.com/hc/en-us/articles/1500000368501-Slash-Commands-FAQ).
+
+- To initialise the action logger, first setup the database by using the `create` command.
+  ```
+  !create
+  ```
+  Upon successful execution, it will return a message saying that the database was created.
+- If you wish to delete the database, use the `delete` command.
+
+Below is an explanation of the various logging commands:
+- `!warn <player> <increment>`: Logs warnings with an increment specifying the severity. Please use whole number values. For example:
+  ```
+  !warn s20 1
+  ```
+- `!tempban <player>`: Logs temp-bans.
+- `!ban <player>`: Logs a perma-ban.
+- `!unban <player>`: Unbans a player.
+- `!retrieve <player>`: Retrieves the logs for a player.
+
+For the Discord counterpart of the logging functionality, you can do `!help` to get a quick list of all the available commands and their general usage.
