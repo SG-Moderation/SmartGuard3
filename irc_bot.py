@@ -24,7 +24,7 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
     super().__init__(*args, **kwargs)
     self.sus_check = SmartGuard()
     self.spam_check = SpamGuard()
-    self.mdb_commands = ModerationDatabaseIRC(os.environ['CHANNEL2'])
+    self.mdb_commands = ModerationDatabaseIRC(os.environ['IRC_WARNINGS_CHANNEL'])
 
   # print out all messages received from IRC
   def on_all_raw_messages(self, connection, event):
@@ -36,17 +36,17 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
     # use  event.source.nick for message author
 
     # listen to commands on specific channels
-    if event.target == os.environ['CHANNEL2']:
+    if event.target == os.environ['IRC_WARNINGS_CHANNEL']:
       self.mdb_commands.listen(connection, event.arguments[0])
 
     # run the filter on specific channels
     # remove the CHANNEL_2 from the if statement unless for testing
-    if event.target == os.environ['CHANNEL1']:
+    if event.target == os.environ['IRC_MOD_CHANNEL']:
       message_original = strip_color_codes(event.arguments[0])
 
       # relay the chat to the relay discord channel
       data = {"content": message_original}
-      response = requests.post(os.environ['RELAY_WEBHOOK'], json=data)
+      response = requests.post(os.environ['IRC_CHAT_RELAY_WEBHOOK'], json=data)
 
       # first word of the message is taken as the player the sent it
       # the rest of the message is taken as the message itself
@@ -61,10 +61,11 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
 
         # send the log to the logs Discord channel
         data = {"content": log_message}
-        response = requests.post(os.environ['LOG_WEBHOOK'], json=data)
+        response = requests.post(os.environ['IRC_WARNINGS_RELAY_WEBHOOK'],
+                                 json=data)
 
         # send the log to the logs IRC channel
-        connection.privmsg(os.environ['CHANNEL2'], log_message)
+        connection.privmsg(os.environ['IRC_WARNINGS_CHANNEL'], log_message)
 
       # run the message through SpamGuard's check
       if self.spam_check.is_spam(msg_cont, msg_auth):
@@ -73,7 +74,8 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
 
         # send the warning to the logs Discord channel
         data = {"content": spam_warning}
-        response = requests.post(os.environ['LOG_WEBHOOK'], json=data)
-        
+        response = requests.post(os.environ['IRC_WARNINGS_RELAY_WEBHOOK'],
+                                 json=data)
+
         # send the warning to the logs IRC channel
-        connection.privmsg(os.environ['CHANNEL2'], spam_warning)
+        connection.privmsg(os.environ['IRC_WARNINGS_CHANNEL'], spam_warning)

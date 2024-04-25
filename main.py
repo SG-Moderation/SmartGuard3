@@ -9,10 +9,10 @@ from discord_bot import DiscordBot
 def start_irc_bot():
   irc_bot = IRCBot(
       server_list=[('irc.libera.chat', 6667)],
-      nickname=os.environ['NICKNAME'],
-      realname=os.environ['NICKNAME'],
-      ident_password=os.environ['PASSWORD'],
-      channels=[os.environ['CHANNEL1'], os.environ['CHANNEL2']],
+      nickname=os.environ['IRC_NICK'],
+      realname=os.environ['IRC_NICK'],
+      ident_password=os.environ['IRC_PASS'],
+      channels=[os.environ['IRC_MOD_CHANNEL'], os.environ['CHANNEL2']],
   )
   irc_bot.start()
 
