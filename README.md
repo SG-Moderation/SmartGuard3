@@ -68,4 +68,4 @@ Below is an explanation of the various logging commands:
 - `!unban <player>`: Unbans a player.
 - `!retrieve <player>`: Retrieves the logs for a player.
 
-For the Discord counterpart of the logging functionality, you can do `!help` to get a quick list of all the available commands and their general usage.
+For the Discord counterpart of the logging functionality, you can use the built-in `help` command to get a quick list of all the available commands and their general usage.
