@@ -47,5 +47,5 @@ You can run this bot by forking it and running it [on Replit](replit.com/@a-blob
 
 To run the bot locally, you can clone this repository to your computer, customise the environment variables defined in the `start.bat` or `start.sh` file according to the description of each variable/key provided above, and run the `start.bat` or `start.sh` file to start the bot.
 
-## Using the Discord Action Logger Bot
+## Using the SmartGuard Action Logging Features
 WIP
