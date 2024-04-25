@@ -49,7 +49,7 @@ To run the bot locally, you can clone this repository to your computer, customis
 
 ## Using the SmartGuard 3 Action Logging Features
 
-SmartGuard 3 comes along with several logging commands to keep track of warnings, temp-bans, and perma-bans issued to a player. It stores this information in an SQLite database. These commands work both from the IRC channel as well as the Discord channels that SmartGuard has access to. The bot command prefix is `!`. In Discord, you can also run these as [slash commands](https://support.discord.com/hc/en-us/articles/1500000368501-Slash-Commands-FAQ).
+SmartGuard3 comes along with several logging commands to keep track of warnings, temp-bans, and perma-bans issued to a player. It stores this information in an SQLite database. These commands work both from `IRC_WARNINGS_CHANNEL` as well as the Discord channels that the SmartGuard Discord bot has access to. The bot command prefix is `!`. In Discord, you can also run these as [slash commands](https://support.discord.com/hc/en-us/articles/1500000368501-Slash-Commands-FAQ).
 
 - To initialise the action logger, first setup the database by using the `create` command.
   ```
