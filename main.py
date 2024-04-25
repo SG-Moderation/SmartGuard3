@@ -12,7 +12,7 @@ def start_irc_bot():
       nickname=os.environ['IRC_NICK'],
       realname=os.environ['IRC_NICK'],
       ident_password=os.environ['IRC_PASS'],
-      channels=[os.environ['IRC_MOD_CHANNEL'], os.environ['CHANNEL2']],
+      channels=[os.environ['IRC_MOD_CHANNEL'], os.environ['IRC_WARNINGS_CHANNEL']],
   )
   irc_bot.start()
 
