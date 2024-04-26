@@ -53,7 +53,7 @@ To run the bot locally, you can clone this repository to your computer, customis
 
 ## How it Works
 
-When you run SmartGuard3, it will log in to IRC with `IRC_NICK` and `IRC_PASS`, and join both `IRC_MOD_CHANNEL` and `IRC_WARNINGS_CHANNEL`. It will also log on to your Discord bot using the `DISCORD_BOT_SECRET` you provided.
+When you run SmartGuard3, it will log into IRC with `IRC_NICK` and `IRC_PASS`, and join both `IRC_MOD_CHANNEL` and `IRC_WARNINGS_CHANNEL`. It will also log into your Discord bot using the `DISCORD_BOT_SECRET` you provided.
 
 It will relay all messages it receives in `IRC_MOD_CHANNEL` to the `IRC_CHAT_RELAY_WEBHOOK`, which should be a Discord webhook. For each message it receives, it will treat the first word of the message as the sender (e.g. `<user> hello`, `<user>` will be treated as the sender). It will determine if the rest of the message is suspicious or not. If it thinks it is suspicious and may contain swears or other forms of chat abuse, it will send the suspicious message into `IRC_WARNINGS_CHANNEL` in the format of `Player <user> said "<message goes here>"`, and send the same message to the `IRC_WARNINGS_RELAY_WEBHOOK`, which should be a Discord webhook.
 
