@@ -5,7 +5,7 @@ from irc_bot import IRCBot
 from discord_bot import DiscordBot
 from assets.logo import display_logo
 
-display_logo("3.0.1")
+display_logo("3.1.0")
 
 
 # create functions that define an instance of the bots and runs them
