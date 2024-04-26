@@ -3,6 +3,9 @@ import multiprocessing
 
 from irc_bot import IRCBot
 from discord_bot import DiscordBot
+from assets.logo import display_logo
+
+display_logo("3.0.1")
 
 
 # create functions that define an instance of the bots and runs them
@@ -12,7 +15,9 @@ def start_irc_bot():
       nickname=os.environ['IRC_NICK'],
       realname=os.environ['IRC_NICK'],
       ident_password=os.environ['IRC_PASS'],
-      channels=[os.environ['IRC_MOD_CHANNEL'], os.environ['IRC_WARNINGS_CHANNEL']],
+      channels=[
+          os.environ['IRC_MOD_CHANNEL'], os.environ['IRC_WARNINGS_CHANNEL']
+      ],
   )
   irc_bot.start()
 
