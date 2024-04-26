@@ -82,3 +82,8 @@ Below is an explanation of the various logging commands:
 - `!retrieve <player>`: Retrieves the logs for a player.
 
 For the Discord counterpart of the logging functionality, you can use the built-in `help` command to get a quick list of all the available commands and their general usage.
+
+
+## Licenses
+
+This project is licensed under the [GNU General Public License v3.0](LICENSE). The logo of this project - [`SmartGuard.png`](./assets/SmartGuard.png) -  is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) by @src4026 and @a-blob.
