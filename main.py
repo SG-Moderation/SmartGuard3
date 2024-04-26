@@ -5,6 +5,7 @@ from irc_bot import IRCBot
 from discord_bot import DiscordBot
 from assets.logo import display_logo
 
+
 display_logo("3.1.0")
 
 
