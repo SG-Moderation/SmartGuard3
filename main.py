@@ -6,7 +6,7 @@ from discord_bot import DiscordBot
 from assets.sg_logo import SGLogo
 
 
-logo = SGLogo("3.1.0")
+logo = SGLogo("3.1.1")
 logo.display()
 
 
