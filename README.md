@@ -1,6 +1,6 @@
 # SmartGuard3
 
-<img src="./assets/SmartGuard_TransparentBG.png" align="right"
+<img src="./assets/SmartGuard.png" align="right"
  alt="SmartGuard logo by s20 and GreenBlob" width="192" height="192">
 
 This is an IRC moderation bot made for in-game chat relays to IRC. It aids moderation by reading messages received real-time in channels and narrowing them down into suspicious messages that may contain potential swears or chat abuse. With this tool, you don't have to read every single message in the chat you're moderating; this bot narrows everything down to a _way_ smaller collection.
