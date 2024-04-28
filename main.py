@@ -3,7 +3,7 @@ import multiprocessing
 
 from irc_bot import IRCBot
 from discord_bot import DiscordBot
-from assets.logo import SGLogo
+from assets.sg_logo import SGLogo
 
 
 logo = SGLogo("3.1.0")
