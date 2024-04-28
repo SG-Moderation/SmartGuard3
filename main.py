@@ -3,10 +3,11 @@ import multiprocessing
 
 from irc_bot import IRCBot
 from discord_bot import DiscordBot
-from assets.logo import display_logo
+from assets.logo import SGLogo
 
 
-display_logo("3.1.0")
+logo = SGLogo("3.1.0")
+logo.display()
 
 
 # create functions that define an instance of the bots and runs them
