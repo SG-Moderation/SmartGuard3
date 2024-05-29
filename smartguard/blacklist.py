@@ -174,6 +174,10 @@ blacklist1 = {
     'fkin',
     'fckin',
     'fug', # experimental
+    'fưʗķ',
+    'fư',
+    'fưķ',
+    'fưʗ',
     'ƒu',
     'shit',
     'shi+',
