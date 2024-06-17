@@ -6,7 +6,7 @@ import ib3.auth
 import irc.bot
 
 import smartguard
-from modlogger.irc_cmds import IrcCmds
+import modlogger
 
 
 # removes color codings from the message
@@ -22,7 +22,7 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
     super().__init__(*args, **kwargs)
     self.sus_check = smartguard.SmartGuard()
     self.spam_check = smartguard.SpamGuard()
-    self.mdb_commands = IrcCmds(os.environ['IRC_WARNINGS_CHANNEL'])
+    self.mdb_commands = modlogger.IrcCmds(os.environ['IRC_WARNINGS_CHANNEL'])
 
   # print out all messages received from IRC
   def on_all_raw_messages(self, connection, event):
