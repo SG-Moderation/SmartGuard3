@@ -1,7 +1,7 @@
 from . import db
 
 
-class ModerationDatabaseIRC:
+class IrcCmds:
 
   def __init__(self, irc_channel):
     self.channel = irc_channel

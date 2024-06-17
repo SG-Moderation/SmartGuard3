@@ -1,7 +1,7 @@
 from discord.ext import commands
 from . import db
 
-class ModerationDatabaseCog(commands.Cog):
+class DiscordCmds(commands.Cog):
 
   def __init__(self, bot: commands.Bot):
     self.bot = bot
