@@ -7,7 +7,7 @@ class DiscordBot(commands.Bot):
     intents = discord.Intents.default()
     intents.message_content = True
     super().__init__(command_prefix="!", intents=intents)
-    self.cogslist = ["modlogger.DiscordCmds"]
+    self.cogslist = ["modlogger.discord_cmds"]
 
   async def setup_hook(self):
     for ext in self.cogslist:
