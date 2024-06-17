@@ -5,9 +5,7 @@ import requests
 import ib3.auth
 import irc.bot
 
-from smartguard.smartguard import SmartGuard
-from smartguard.spamguard import SpamGuard
-from smartguard.blacklist import blacklist1, blacklist2
+import smartguard
 from modlogger.irc_cmds import IrcCmds
 
 
@@ -22,8 +20,8 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
   def __init__(self, *args, **kwargs):
     # inherit all properties and methods from its superclass
     super().__init__(*args, **kwargs)
-    self.sus_check = SmartGuard()
-    self.spam_check = SpamGuard()
+    self.sus_check = smartguard.SmartGuard()
+    self.spam_check = smartguard.SpamGuard()
     self.mdb_commands = IrcCmds(os.environ['IRC_WARNINGS_CHANNEL'])
 
   # print out all messages received from IRC
@@ -55,7 +53,7 @@ class IRCBot(ib3.auth.SASL, irc.bot.SingleServerIRCBot):
       msg_cont = msg_org[1] if len(msg_org) > 1 else ""
 
       # run the message through SmartGuard's checks
-      if self.sus_check.is_sus(msg_cont, msg_auth, blacklist1, blacklist2):
+      if self.sus_check.is_sus(msg_cont, msg_auth, smartguard.blacklist1, smartguard.blacklist2):
         # if the message contains swear, create a log
         log_message = f'Player {msg_auth} said "{msg_cont}"'
 
