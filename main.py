@@ -45,4 +45,5 @@ discord_process = multiprocessing.Process(target=start_discord_bot)
 
 if __name__ == '__main__':
   irc_process.start()
-  discord_process.start()
+  if os.environ['ENABLE_DISCORD_BOT'] == "true":
+    discord_process.start()
