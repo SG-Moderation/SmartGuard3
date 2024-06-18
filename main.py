@@ -6,7 +6,6 @@ from irc_bot import IRCBot
 from discord_bot import DiscordBot
 from assets.sg_logo import SGLogo
 
-
 logo = SGLogo("3.3.0")
 logo.display()
 
@@ -16,7 +15,7 @@ def start_irc_bot():
   while True:
     try:
       irc_bot = IRCBot(
-          server_list=[('irc.libera.chat', 6667)],
+          server_list=[(os.environ['IRC_SERVER'], int(os.environ['IRC_PORT']))],
           nickname=os.environ['IRC_NICK'],
           realname=os.environ['IRC_NICK'],
           ident_password=os.environ['IRC_PASS'],

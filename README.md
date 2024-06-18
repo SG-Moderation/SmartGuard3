@@ -38,6 +38,8 @@ Most cases of swearing, swear filter bypass, and other forms of chat abuse are c
 You can run this bot by forking it and running it [on Replit](replit.com/@a-blob/SmartGuard3). With that, you need to define a few necessary "secrets" on Replit through the "secrets" tab. The following "secrets" are required:
 | Key | The value to put in |
 |--|--|
+| `IRC_SERVER` | The server url of the server you want the bot to join |
+| `IRC_PORT` | The port of the server |
 | `IRC_NICK` | The nick/username of your IRC bot account |
 | `IRC_PASS` | The password of your IRC bot account  |
 | `IRC_MOD_CHANNEL` | The IRC channel to look for suspicious messages |

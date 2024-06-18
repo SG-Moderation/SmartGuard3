@@ -1,4 +1,6 @@
 #!/bin/sh
+export IRC_SERVER="<The server url of the server you want the bot to join>"
+export IRC_PORT="<The port of the server>"
 export IRC_NICK="<The nick/username of your IRC bot account>"
 export IRC_PASS="<The password of your IRC bot account>"
 export IRC_MOD_CHANNEL="<The IRC channel to look for suspicious messages>"
