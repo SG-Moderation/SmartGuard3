@@ -1,4 +1,5 @@
 import os
+import time
 import multiprocessing
 
 from irc_bot import IRCBot
@@ -12,16 +13,22 @@ logo.display()
 
 # create functions that define an instance of the bots and runs them
 def start_irc_bot():
-  irc_bot = IRCBot(
-      server_list=[('irc.libera.chat', 6667)],
-      nickname=os.environ['IRC_NICK'],
-      realname=os.environ['IRC_NICK'],
-      ident_password=os.environ['IRC_PASS'],
-      channels=[
-          os.environ['IRC_MOD_CHANNEL'], os.environ['IRC_WARNINGS_CHANNEL']
-      ],
-  )
-  irc_bot.start()
+  while True:
+    try:
+      irc_bot = IRCBot(
+          server_list=[('irc.libera.chat', 6667)],
+          nickname=os.environ['IRC_NICK'],
+          realname=os.environ['IRC_NICK'],
+          ident_password=os.environ['IRC_PASS'],
+          channels=[
+              os.environ['IRC_MOD_CHANNEL'], os.environ['IRC_WARNINGS_CHANNEL']
+          ],
+      )
+      irc_bot.start()
+    # catch any exception
+    except Exception as e:
+      print(f"IRC BOT ERROR: {e}, RESTARTING IN 5 SECONDS...")
+      time.sleep(5)
 
 
 def start_discord_bot():
