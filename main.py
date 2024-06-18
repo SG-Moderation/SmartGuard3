@@ -6,7 +6,7 @@ from irc_bot import IRCBot
 from discord_bot import DiscordBot
 from assets.sg_logo import SGLogo
 
-logo = SGLogo("3.3.0")
+logo = SGLogo("3.4.0")
 logo.display()
 
 
