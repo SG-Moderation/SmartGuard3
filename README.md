@@ -89,4 +89,4 @@ For the Discord counterpart of the logging functionality, you can use the built-
 
 ## Licenses
 
-This project is licensed under the [GNU General Public License v3.0](LICENSE). The logo of this project - [`SmartGuard.png`](./assets/SmartGuard.png) -  is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) by @src4026 and @a-blob.
+This project is licensed under the [GNU General Public License v3.0](LICENSE). The logo of this project - [`SmartGuard.png`](./assets/SmartGuard.png) -  is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) by [s20](https://github.com/src4026) and [GreenBlob](https://github.com/a-blob).
